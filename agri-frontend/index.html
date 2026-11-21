@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenFarm | Agricultural Traceability</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard"><span class="brand-icon">🌱</span><span><b>GreenFarm</b><small>SUPPLY CHAIN</small></span></a>
+      <div class="side-label">เมนูหลัก</div>
+      <nav id="mainNav">
+        <button class="nav-item active" data-page="dashboard"><span>▦</span> ภาพรวมระบบ</button>
+        <button class="nav-item" data-page="products"><span>▣</span> สินค้าเกษตร</button>
+        <button class="nav-item" data-page="stakeholders"><span>♙</span> ผู้เกี่ยวข้อง</button>
+        <button class="nav-item" data-page="trace"><span>⌕</span> ตรวจสอบย้อนกลับ</button>
+        <button class="nav-item" data-page="operations"><span>⇄</span> จัดการสถานะ / ส่งมอบ</button>
+        <button class="nav-item" data-page="recall"><span>⚑</span> เรียกคืนสินค้า</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="chain-dot"></div><div><b>Ethereum Sepolia</b><small>Test Network</small></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><div class="eyebrow">GREENFARM SUPPLY CHAIN</div><h1 id="pageTitle">ภาพรวมระบบ</h1></div>
+        <div class="top-actions"><span class="network-pill"><i></i> Sepolia Testnet</span><button id="connectBtn" class="btn btn-dark">เชื่อมต่อ MetaMask</button></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-card"><div><span class="welcome-tag">BLOCKCHAIN TRACEABILITY</span><h2>ติดตามทุกขั้นตอน<br>เพื่ออาหารที่ปลอดภัย</h2><p>ตรวจสอบแหล่งที่มาและเส้นทางของสินค้าเกษตรได้อย่างโปร่งใส ด้วยข้อมูลบน Blockchain</p><button class="btn btn-white" data-goto="trace">ตรวจสอบสินค้า <span>→</span></button></div><div class="welcome-art">🌾<div class="art-leaf">🥬</div><div class="art-fruit">🍅</div></div></div>
+        <div class="section-heading"><div><h2>ภาพรวมข้อมูล</h2><p>ข้อมูลที่อ่านจาก Smart Contract</p></div><button class="btn btn-outline" id="refreshBtn">↻ รีเฟรชข้อมูล</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon green">▣</div><span>ล็อตสินค้าทั้งหมด</span><strong id="statBatches">—</strong><small>Product batches</small></article>
+          <article class="stat-card"><div class="stat-icon orange">♙</div><span>ผู้เกี่ยวข้องที่ใช้งาน</span><strong id="statPeople">—</strong><small>Active stakeholders</small></article>
+          <article class="stat-card"><div class="stat-icon blue">⇄</div><span>รายการที่อยู่ระหว่างขนส่ง</span><strong id="statTransit">—</strong><small>In transit</small></article>
+          <article class="stat-card"><div class="stat-icon red">⚑</div><span>สินค้าที่ถูกเรียกคืน</span><strong id="statRecall">—</strong><small>Recalled products</small></article>
+        </div>
+        <div class="content-card"><div class="section-heading compact"><div><h2>รายการสินค้าล่าสุด</h2><p>ล็อตสินค้าที่บันทึกในระบบ</p></div><button class="text-button" data-goto="products">ดูทั้งหมด →</button></div><div class="table-wrap"><table><thead><tr><th>Batch ID</th><th>ชื่อสินค้า</th><th>แหล่งผลิต</th><th>วันที่เก็บเกี่ยว</th><th>สถานะ</th><th></th></tr></thead><tbody id="recentRows"><tr><td colspan="6" class="empty">เชื่อมต่อกระเป๋าและ Smart Contract เพื่อโหลดข้อมูล</td></tr></tbody></table></div></div>
+      </section>
+
+      <section class="page" id="page-products">
+        <div class="section-heading"><div><h2>สินค้าเกษตรทั้งหมด</h2><p>รายการ Product Batch ที่บันทึกบน Blockchain</p></div><button class="btn btn-primary" data-goto="operations">＋ ลงทะเบียนสินค้า</button></div>
+        <div class="content-card"><div class="toolbar"><input id="productSearch" class="search-input" placeholder="ค้นหาด้วย Batch ID หรือชื่อสินค้า..." /></div><div class="table-wrap"><table><thead><tr><th>Batch ID</th><th>สินค้า</th><th>แหล่งผลิต</th><th>เกษตรกร</th><th>เจ้าของปัจจุบัน</th><th>สถานะ</th><th>รายละเอียด</th></tr></thead><tbody id="productRows"><tr><td colspan="7" class="empty">ยังไม่มีข้อมูล</td></tr></tbody></table></div></div>
+      </section>
+
+      <section class="page" id="page-stakeholders">
+        <div class="section-heading"><div><h2>จัดการผู้เกี่ยวข้อง</h2><p>ลงทะเบียนผู้มีส่วนร่วมในห่วงโซ่อุปทาน</p></div></div>
+        <div class="two-column"><div class="content-card"><h3>ลงทะเบียนผู้เกี่ยวข้อง</h3><p class="muted">ดำเนินการได้เฉพาะ Admin</p><form id="stakeholderForm"><label>Wallet Address</label><input name="account" placeholder="0x..." required /><label>ชื่อผู้เกี่ยวข้อง</label><input name="name" placeholder="เช่น Green Farm จำกัด" required /><label>ประเภทผู้เกี่ยวข้อง</label><select name="role"><option value="1">Farmer — เกษตรกร</option><option value="2">Transporter — ผู้ขนส่ง</option><option value="3">Distributor — ผู้จัดจำหน่าย</option><option value="4">Retailer — ร้านค้าปลีก</option><option value="5">Inspector — ผู้ตรวจสอบ</option></select><button class="btn btn-primary full" type="submit">ลงทะเบียนบน Blockchain</button></form></div><div class="content-card info-card"><div class="big-emoji">👨‍🌾</div><h3>Stakeholder Roles</h3><ul class="role-list"><li><b>Farmer</b><span>สร้างล็อตสินค้าเกษตร</span></li><li><b>Transporter</b><span>รับและส่งมอบสินค้า</span></li><li><b>Distributor</b><span>จัดจำหน่ายสินค้า</span></li><li><b>Retailer</b><span>รับสินค้าเข้าร้านค้า</span></li><li><b>Inspector</b><span>ตรวจสอบข้อมูลสินค้า</span></li></ul></div></div>
+      </section>
+
+      <section class="page" id="page-trace">
+        <div class="trace-banner"><div><span class="welcome-tag">PUBLIC PRODUCT LOOKUP</span><h2>ตรวจสอบย้อนกลับสินค้า</h2><p>กรอก Batch ID เพื่อดูแหล่งผลิต เจ้าของปัจจุบัน และประวัติการเดินทาง</p></div><div class="trace-icon">🔎</div></div>
+        <div class="content-card lookup-card"><form id="traceForm" class="lookup-form"><input name="batchId" type="number" min="1" placeholder="กรอก Batch ID เช่น 1" required /><button class="btn btn-primary" type="submit">ค้นหาสินค้า</button></form><div id="traceResult" class="trace-result"><div class="empty-state"><span>📦</span><b>ยังไม่ได้ค้นหาสินค้า</b><small>ผลการตรวจสอบจะแสดงที่นี่</small></div></div></div>
+      </section>
+
+      <section class="page" id="page-operations">
+        <div class="section-heading"><div><h2>จัดการสินค้าและการส่งมอบ</h2><p>บันทึกข้อมูลและอัปเดตสถานะสินค้าบน Blockchain</p></div></div>
+        <div class="two-column"><div class="content-card"><h3>＋ ลงทะเบียนสินค้าใหม่</h3><p class="muted">สำหรับบัญชีที่มีบทบาท Farmer เท่านั้น</p><form id="batchForm"><label>ชื่อสินค้า</label><input name="productName" placeholder="เช่น มะเขือเทศ" required /><label>แหล่งผลิต / จังหวัด</label><input name="origin" placeholder="เช่น อำเภอเมือง จังหวัดเชียงใหม่" required /><label>วันที่เก็บเกี่ยว</label><input name="harvestDate" type="date" required /><button class="btn btn-primary full" type="submit">บันทึก Product Batch</button></form></div><div class="content-card"><h3>⇄ ส่งมอบสินค้า</h3><p class="muted">เจ้าของปัจจุบันเป็นผู้ทำรายการ</p><form id="transferForm"><label>Batch ID</label><input name="batchId" type="number" min="1" required /><label>Wallet Address ผู้รับสินค้า</label><input name="newOwner" placeholder="0x..." required /><label>รายละเอียดการส่งมอบ</label><textarea name="details" rows="3" placeholder="เช่น ส่งมอบให้บริษัทขนส่ง" required></textarea><button class="btn btn-primary full" type="submit">ยืนยันการส่งมอบ</button></form></div></div>
+        <div class="content-card status-card"><h3>อัปเดตสถานะสินค้า</h3><form id="statusForm" class="inline-form"><div><label>Batch ID</label><input name="batchId" type="number" min="1" required /></div><div><label>สถานะใหม่</label><select name="status"><option value="0">Registered — ลงทะเบียนแล้ว</option><option value="1">Harvested — เก็บเกี่ยวแล้ว</option><option value="2">InTransit — อยู่ระหว่างขนส่ง</option><option value="3">AtWarehouse — ถึงคลังสินค้า</option><option value="4">AtRetailer — ถึงร้านค้า</option></select></div><div class="grow"><label>รายละเอียด</label><input name="details" placeholder="ระบุรายละเอียดเพิ่มเติม" required /></div><button class="btn btn-primary" type="submit">อัปเดตสถานะ</button></form></div>
+      </section>
+
+      <section class="page" id="page-recall">
+        <div class="recall-warning"><span>⚠</span><div><b>Product Recall — เรียกคืนสินค้า</b><p>ใช้เมื่อพบว่าสินค้ามีปัญหาด้านคุณภาพหรือความปลอดภัย การดำเนินการนี้บันทึกลง Blockchain และไม่สามารถย้อนกลับได้</p></div></div>
+        <div class="content-card recall-form-card"><h2>เรียกคืนสินค้าเกษตร</h2><p class="muted">เฉพาะ Admin เท่านั้นที่สามารถเรียกคืนสินค้าได้</p><form id="recallForm"><label>Batch ID</label><input name="batchId" type="number" min="1" placeholder="ระบุ Batch ID" required /><label>เหตุผลในการเรียกคืน</label><textarea name="reason" rows="4" placeholder="เช่น ตรวจพบสารปนเปื้อนเกินมาตรฐาน" required></textarea><button class="btn btn-danger" type="submit">⚑ ยืนยันการเรียกคืนสินค้า</button></form></div>
+      </section>
+
+      <footer>© 2026 GreenFarm Supply Chain · Powered by Ethereum Blockchain</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <div id="modal" class="modal"><div class="modal-box"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
